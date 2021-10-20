@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "author": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "rating": {
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "review": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "required": ["title", "author", "rating", "review"]
+  }
+}

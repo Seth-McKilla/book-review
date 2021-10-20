@@ -1,0 +1,9 @@
+{
+  "definitions": {
+    "readingList": "kjzl6cwe1jw1474otbyf3wdwkb1hq4dtsxpg2llml0xvcscc9gb72rbi2y88oox"
+  },
+  "schemas": {
+    "ReadingList": "ceramic://k3y52l7qbv1fryfvo73j1987hiab1761swindwy7brj2c59a5cgngqnzifftgx7uo"
+  },
+  "tiles": {}
+}

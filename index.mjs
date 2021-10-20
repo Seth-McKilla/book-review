@@ -3,53 +3,41 @@ import { CeramicClient } from "@ceramicnetwork/http-client";
 import { ModelManager } from "@glazed/devtools";
 import { DID } from "dids";
 import { Ed25519Provider } from "key-did-provider-ed25519";
-import { getResolver } from "key-did-resolver";
-import { fromString } from "uint8arrays";
+import KeyResolver from "key-did-resolver";
+import readingListSchema from "./schemas/ReadingList.json";
 import dotenv from "dotenv";
 dotenv.config();
 
-async function getBookReviewSchemaID() {
+(async function () {
   try {
-    const key = fromString(process.env.DID_KEY, "base16");
-    // Create and authenticate the DID
-    const did = new DID({
-      provider: new Ed25519Provider(key),
-      resolver: getResolver(),
-    });
+    const seed = new Uint8Array(32); //  32 bytes with high entropy
+    const provider = new Ed25519Provider(seed);
+    const did = new DID({ provider, resolver: KeyResolver.getResolver() });
     await did.authenticate();
 
-    // Connect to the local Ceramic node
-    const ceramic = new CeramicClient("http://localhost:7007");
+    const ceramic = new CeramicClient("https://ceramic-clay.3boxlabs.com");
     ceramic.did = did;
 
     // Create a manager for the model
     const manager = new ModelManager(ceramic);
 
-    const bookReviewSchemaID = await manager.createSchema("BookReview", {
+    const ReadingListSchemaID = await manager.createSchema("ReadingList", {
       $schema: "http://json-schema.org/draft-07/schema#",
-      title: "BookReview",
-      type: "object",
-      properties: {
-        title: {
-          "type": "string",
-          "maxLength": 500,
-        },
-        rating: {
-          "type": "integer",
-          "min": 1,
-          "max": 5,
-        },
-        description: {
-          "type": "string",
-          "maxLength": 500,
-        },
-      },
+      title: "ReadingList",
+      type: "array",
+      items: readingListSchema,
     });
 
-    return bookReviewSchemaID;
+    await manager.createDefinition("readingList", {
+      name: "Reading List",
+      description: "A list of ratings and reviews of all books read.",
+      schema: manager.getSchemaURL(ReadingListSchemaID),
+    });
+
+    const model = await manager.toPublished();
+
+    return await writeFile("./model.json", JSON.stringify(model));
   } catch (error) {
     console.log(error);
   }
-}
-
-getBookReviewSchemaID();
+})();
