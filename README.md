@@ -29,8 +29,6 @@ The Reading List schema defines the format of a document that contains the prope
 | `rating` | book rating | number  | min 1, max 5 | required | 5                          |
 | `review` | book review | unicode | max 500 char | required | Fantastic dystopian novel. |
 
-## [Discussion](https://github.com/ceramicstudio/datamodels/discussions/10)
-
 ## License
 
 Dual licensed under MIT and Apache 2
