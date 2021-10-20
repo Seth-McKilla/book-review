@@ -4,7 +4,8 @@
   "description": "Book review data model for the Ceramic network",
   "main": "index.js",
   "scripts": {
-    "start": "node --experimental-json-modules index.mjs"
+    "start": "node --experimental-json-modules index.mjs",
+    "key": "node --experimental-json-modules getKeyDID.mjs"
   },
   "repository": {
     "type": "git",

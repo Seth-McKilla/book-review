@@ -1,0 +1,12 @@
+{
+  "folders": [
+	{
+		"path": "../incogreado"
+	},
+	{
+		"path": "."
+	}
+],
+  "remoteAuthority": "wsl+Ubuntu",
+  "settings": {}
+}

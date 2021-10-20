@@ -8,11 +8,9 @@ import { fromString } from "uint8arrays";
 import dotenv from "dotenv";
 dotenv.config();
 
-(async function () {
+async function getBookReviewSchemaID() {
   try {
-    console.log(process.env.DID_KEY);
     const key = fromString(process.env.DID_KEY, "base16");
-    console.log("MADE IT HERE");
     // Create and authenticate the DID
     const did = new DID({
       provider: new Ed25519Provider(key),
@@ -26,8 +24,32 @@ dotenv.config();
 
     // Create a manager for the model
     const manager = new ModelManager(ceramic);
-    console.log(manager);
+
+    const bookReviewSchemaID = await manager.createSchema("BookReview", {
+      $schema: "http://json-schema.org/draft-07/schema#",
+      title: "BookReview",
+      type: "object",
+      properties: {
+        title: {
+          "type": "string",
+          "maxLength": 500,
+        },
+        rating: {
+          "type": "integer",
+          "min": 1,
+          "max": 5,
+        },
+        description: {
+          "type": "string",
+          "maxLength": 500,
+        },
+      },
+    });
+
+    return bookReviewSchemaID;
   } catch (error) {
     console.log(error);
   }
-})();
+}
+
+getBookReviewSchemaID();
