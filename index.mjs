@@ -3,16 +3,19 @@ import { CeramicClient } from "@ceramicnetwork/http-client";
 import { ModelManager } from "@glazed/devtools";
 import { DID } from "dids";
 import { Ed25519Provider } from "key-did-provider-ed25519";
-import KeyResolver from "key-did-resolver";
+import { getResolver } from "key-did-resolver";
+import { fromString } from "uint8arrays";
 import bookReviewSchema from "./schemas/BookReview.json";
 import dotenv from "dotenv";
 dotenv.config();
 
 (async function () {
   try {
-    const seed = new Uint8Array(32); //  32 bytes with high entropy
-    const provider = new Ed25519Provider(seed);
-    const did = new DID({ provider, resolver: KeyResolver.getResolver() });
+    const key = fromString(process.env.DID_KEY, "base16");
+    const did = new DID({
+      provider: new Ed25519Provider(key),
+      resolver: getResolver(),
+    });
     await did.authenticate();
 
     const ceramic = new CeramicClient("https://ceramic-clay.3boxlabs.com");

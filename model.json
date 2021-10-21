@@ -1,11 +1,11 @@
 {
   "definitions": {
-    "bookReview": "kjzl6cwe1jw14achw0my389f6h0q15831tqwt7zswry4wfldsh0mc8xw4ditw98"
+    "bookReview": "kjzl6cwe1jw147qkffe68vzs3lcmu1r8r22gt6gc8rzle8ee4zxugr6ih89vj6v"
   },
   "schemas": {
-    "BookReview": "ceramic://k3y52l7qbv1frxkufuvx8ho4jxkt7qcrjjla95jum9ix9znrjqn1qjezdy4hyl9ts"
+    "BookReview": "ceramic://k3y52l7qbv1fryl50kpwxiywn5xocjg66a4fh7zm0wk9ob5evbiu43g5gqp0j13pc"
   },
   "tiles": {
-    "exampleBookReview": "kjzl6cwe1jw1462hn97ug8ydgiqr0imjm2np1umi0o9tjkn128h6a3dcbbx3yn2"
+    "exampleBookReview": "kjzl6cwe1jw149h0t3b16nq27i3u7w5p0kktqejqo2algpf978x0akk4wuypkng"
   }
 }
