@@ -21,18 +21,33 @@ dotenv.config();
     // Create a manager for the model
     const manager = new ModelManager(ceramic);
 
-    const ReadingListSchemaID = await manager.createSchema("ReadingList", {
+    const readingListSchemaID = await manager.createSchema("ReadingList", {
       $schema: "http://json-schema.org/draft-07/schema#",
       title: "ReadingList",
-      type: "array",
-      items: readingListSchema,
+      type: "object",
+      properties: readingListSchema,
     });
 
     await manager.createDefinition("readingList", {
       name: "Reading List",
       description: "A list of ratings and reviews of all books read.",
-      schema: manager.getSchemaURL(ReadingListSchemaID),
+      schema: manager.getSchemaURL(readingListSchemaID),
     });
+
+    await manager.createTile(
+      "exampleReadingList",
+      {
+        readingList: [
+          {
+            title: "Test Title",
+            author: "Test Author",
+            rating: 4,
+            review: "Test Review",
+          },
+        ],
+      },
+      { schema: manager.getSchemaURL(readingListSchemaID) }
+    );
 
     const model = await manager.toPublished();
 

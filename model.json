@@ -1,9 +1,11 @@
 {
   "definitions": {
-    "readingList": "kjzl6cwe1jw1474otbyf3wdwkb1hq4dtsxpg2llml0xvcscc9gb72rbi2y88oox"
+    "readingList": "kjzl6cwe1jw14auvbrwhdj1o6u27c4nqx3htrknoxrxqn0ufxods4zqu6jj8457"
   },
   "schemas": {
-    "ReadingList": "ceramic://k3y52l7qbv1fryfvo73j1987hiab1761swindwy7brj2c59a5cgngqnzifftgx7uo"
+    "ReadingList": "ceramic://k3y52l7qbv1fryade1ez315dhawyxcdxa3y3b8lo6ig8sor56x8g1drp3k3b7r5s0"
   },
-  "tiles": {}
+  "tiles": {
+    "exampleReadingList": "kjzl6cwe1jw1487wx68mofakvlgv1oc4yl33oa3q54fxha0fdr3wy39mfopw3f9"
+  }
 }
