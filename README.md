@@ -1,26 +1,26 @@
-# Reading List DataModel
+# Book Review DataModel
 
-DataModel implementation of the **ReadingList** schema and definition.
+DataModel implementation of the **BookReview** schema and definition.
 
 ```sh
-npm install -D @datamodels/reading-list
+npm install -D @datamodels/book-review
 ```
 
 ## Rationale
 
-The **ReadingList** contains a DID's list of all books read, their rating, and review.
+The **BookReview** contains a DID's list of all books read, their rating, and review.
 
-By keeping a list of the books that have been read for DIDs, the Reading List provides unique opportunities for how applications can be anonymously personalized for DIDs based on their reading preferences. This also opens the door to a potential decentralized aggregation application of all book ratings and reviews across many DIDs.
+By keeping a list of the books that have been read for DIDs, the Book Review provides unique opportunities for how applications can be anonymously personalized for DIDs based on their reading preferences. This also opens the door to a potential decentralized aggregation application of all book ratings and reviews across many DIDs.
 
 **It is what you read when you don’t have to that determines what you will be when you can’t help it. – Oscar Wilde**
 
-**DID-agnostic support:** Since Ceramic documents can be created and controlled by any DID, the Reading List can be used in conjunction with any DID method.
+**DID-agnostic support:** Since Ceramic documents can be created and controlled by any DID, the Book Review can be used in conjunction with any DID method.
 
 ## Schemas
 
-### [ReadingList](./schemas/ReadingList.json)
+### [BookReview](./schemas/BookReview.json)
 
-The Reading List schema defines the format of a document that contains the properties listed below. Properties not defined in the schema _cannot_ be included in the Reading List, however the schema can always be updated via a new CIP. The below list represents a single book review item of the overall items array.
+The Book Review schema defines the format of a document that contains the properties listed below. Properties not defined in the schema _cannot_ be included in the Book Review, however the schema can always be updated via a new CIP.
 
 | Property | Description | Value   | Validation   | Required | Example                    |
 | -------- | ----------- | ------- | ------------ | -------- | -------------------------- |

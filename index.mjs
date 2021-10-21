@@ -4,7 +4,7 @@ import { ModelManager } from "@glazed/devtools";
 import { DID } from "dids";
 import { Ed25519Provider } from "key-did-provider-ed25519";
 import KeyResolver from "key-did-resolver";
-import readingListSchema from "./schemas/ReadingList.json";
+import bookReviewSchema from "./schemas/BookReview.json";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -21,32 +21,31 @@ dotenv.config();
     // Create a manager for the model
     const manager = new ModelManager(ceramic);
 
-    const readingListSchemaID = await manager.createSchema("ReadingList", {
+    const bookReviewSchemaID = await manager.createSchema("BookReview", {
       $schema: "http://json-schema.org/draft-07/schema#",
-      title: "ReadingList",
+      title: "BookReview",
       type: "object",
-      properties: readingListSchema,
+      properties: bookReviewSchema,
+      required: ["title", "author", "rating", "review"],
+      additionalProperties: false,
     });
 
-    await manager.createDefinition("readingList", {
-      name: "Reading List",
-      description: "A list of ratings and reviews of all books read.",
-      schema: manager.getSchemaURL(readingListSchemaID),
+    await manager.createDefinition("bookReview", {
+      name: "Book Review",
+      description: "A simple book review.",
+      schema: manager.getSchemaURL(bookReviewSchemaID),
     });
 
     await manager.createTile(
-      "exampleReadingList",
+      "exampleBookReview",
       {
-        readingList: [
-          {
-            title: "Test Title",
-            author: "Test Author",
-            rating: 4,
-            review: "Test Review",
-          },
-        ],
+        title: "1984",
+        author: "George Orwell",
+        rating: 5,
+        review:
+          "	This classic novel serves as a poignant reminder of the potential dystopian future that is not outside the realm of possibly. Ceramic is here to help!",
       },
-      { schema: manager.getSchemaURL(readingListSchemaID) }
+      { schema: manager.getSchemaURL(bookReviewSchemaID) }
     );
 
     const model = await manager.toPublished();
